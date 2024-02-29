@@ -1,4 +1,4 @@
-
+import pyautogui
 #UNMODDABLE CONSTANTS
 screenshot_folder = "./screenshots"
 

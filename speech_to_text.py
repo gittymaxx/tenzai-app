@@ -1,3 +1,4 @@
+import time
 import sounddevice as sd
 from scipy.io.wavfile import write
 import keyboard
@@ -18,11 +19,12 @@ def transform_speech():
 def record_speech():
     fs = 44100  # Sample rate
     try: 
+        recording = sd.rec(None, samplerate=fs, channels=2)
         while True:
-            recording = sd.rec(None, samplerate=fs, channels=2)
             pressed = keyboard.read_key()
             if pressed == "n" or pressed == "N":
                 raise KeyboardInterrupt
+            time.wait(.3)
     except KeyboardInterrupt:
         write('{}output.wav'.format(recording_folder), fs, recording)  # Save as WAV file 
 

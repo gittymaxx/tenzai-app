@@ -18,8 +18,8 @@ def start_chat():
 def ask():
     #TODO
     screenshot.screenshot('image')
-    STT.record_to_text()
+    message = STT.record_to_text()
 
     #sends message to bot with screenshot and question.
-    send_message()
+    send_message(message)
     return
