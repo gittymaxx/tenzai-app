@@ -6,10 +6,11 @@ import screenshot
 #Given: String with text that wants to be said to API
 #Returns: response string from API.
 def send_message(message):
+    #TODO
     response = ""
     return response
 
-#Calls the API with gemini to start the role_play as AI Tenz.
+#Calls the gemini api to start the role play as AI Tenz.
 def start_chat():
     start_text = "Let's play a game where you role play as Tenz"
     send_message(start_text)

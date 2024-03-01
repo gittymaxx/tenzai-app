@@ -10,13 +10,12 @@ hero = "Phoenix"
 #things to do when we start the program. Waits for the user to press the 'n' or 'N' key.
 def start_program():
     ai.start_chat()
+    print("press N to start the program.")
     while(True):
-        print("press N to start the program.")
         pressed = keyboard.read_key()
         if pressed == "n" or pressed == "N":
             return 
-        time.wait(.3)
-
+        time.wait(.1)
 
 
 if __name__ == "__main__":
@@ -28,5 +27,4 @@ if __name__ == "__main__":
         pressed = keyboard.read_key()
         if pressed == "n" or pressed == "N":
             ai.ask()
-            time.wait(15)
         time.wait(.3)
