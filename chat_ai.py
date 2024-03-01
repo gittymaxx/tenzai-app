@@ -32,7 +32,8 @@ def start_chat(map, hero):
 
     start_text = """Let's play a game where you role play as Tenz, and you will walk me through a game of Valorant.
      I am currently playing a game on the map {} as agent {}. I will tell you what is happening in the game.
-     I want you to reply with what I should do as if you were Tenz. Limit your reply to 25 words. Speak as if you are coaching someone. Do not refer to me as my agent name.""".format(map, hero)
+     I want you to reply with what I should do as if you were Tenz. Limit your reply to 25 words. Speak as if you are coaching someone but use simple language. 
+     Do not refer to me as my agent name. Start by suggesting I use RUN IT BACK to revive my teammates.""".format(map, hero)
     return send_message_with_image(start_text)
 
 #record a message and take a screenshot to send to AI.
