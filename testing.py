@@ -1,10 +1,34 @@
-import chat_ai as ai
 
+import requests
 
-response = ai.start_chat("Lotus", "Phoenix")
-print(response)
-print(response.text)
-print(response.candidates[0].finish_reason.name)
-while(True):
-    response = ai.send_message_with_image(input('What do you want to say'))
-    print(response.text)
+TTS_API_KEY = "69fbd62afbc20a879804a57f8beccdcb"
+
+#Given: String with text we want to be said.
+#Returns: MP3 with playable Sound.
+def get_recording_from_text(text):
+
+    CHUNK_SIZE = 1024
+    url = "https://api.elevenlabs.io/v1/text-to-speech/LCMj3x3tih2eXFZcAv2Z"
+
+    headers = {
+        "Accept": "audio/mpeg",
+        "Content-Type": "application/json",
+        "xi-api-key": "69fbd62afbc20a879804a57f8beccdcb"
+    }
+
+    data = {
+        "text": text,
+        "model_id": "eleven_monolingual_v1",
+        "voice_settings": {
+            "stability": 0.5,
+            "similarity_boost": 0.5
+        }
+    }
+
+    response = requests.post(url, json=data, headers=headers)
+    with open('output.mp3', 'wb') as f:
+        for chunk in response.iter_content(chunk_size=CHUNK_SIZE):
+            if chunk:
+                f.write(chunk)
+
+test = get_recording_from_text("I'm tenz ai chat")
