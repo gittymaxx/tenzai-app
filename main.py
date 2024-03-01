@@ -9,7 +9,7 @@ hero = "Phoenix"
 
 #things to do when we start the program. Waits for the user to press the 'n' or 'N' key.
 def start_program():
-    ai.start_chat()
+    ai.start_chat(map, hero)
     print("press N to start the program.")
     while(True):
         pressed = keyboard.read_key()
