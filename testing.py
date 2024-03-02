@@ -1,34 +1,50 @@
+import time
+import sounddevice as sd
+from scipy.io.wavfile import write
 
-import requests
+recording_folder = './recordings/'
+API_KEY = "6G2IDAFKJZFX675PZ983VFGNTDFSJM2L"
 
-TTS_API_KEY = "69fbd62afbc20a879804a57f8beccdcb"
+import keyboard
+import chat_ai as ai
+import text_to_speech as tts
 
-#Given: String with text we want to be said.
-#Returns: MP3 with playable Sound.
-def get_recording_from_text(text):
+#MODIFIABLE GLOBAL VARIABLES
+map = "Lotus"
+hero = "Phoenix"
 
-    CHUNK_SIZE = 1024
-    url = "https://api.elevenlabs.io/v1/text-to-speech/LCMj3x3tih2eXFZcAv2Z"
+#things to do when we start the program. Waits for the user to press the 'n' or 'N' key.
+def start_program():
+    ai.start_chat(map, hero)
+    print("press N to start the program.")
+    while(True):
+        pressed = keyboard.read_key()
+        if pressed == "n" or pressed == "N":
+            return 
+        time.sleep(.1)
 
-    headers = {
-        "Accept": "audio/mpeg",
-        "Content-Type": "application/json",
-        "xi-api-key": "69fbd62afbc20a879804a57f8beccdcb"
-    }
+#records the speech and turns it into file output.wav
+def record_speech():
+    fs = 44100  # Sample rate
+    try: 
+        recording = sd.rec(frames = 20*fs, samplerate=fs, channels=2)
+        while True:
+            pressed = keyboard.read_key()
+            if pressed == "n" or pressed == "N":
+                raise KeyboardInterrupt
+            time.sleep(.3)
+    except KeyboardInterrupt:
+        write('{}output.wav'.format(recording_folder), fs, recording)  # Save as WAV file 
 
-    data = {
-        "text": text,
-        "model_id": "eleven_monolingual_v1",
-        "voice_settings": {
-            "stability": 0.5,
-            "similarity_boost": 0.5
-        }
-    }
+# if __name__ == "__main__":
+#     intro = "Hi, I'm Tenz AI. Here to help you win in Valorant. it looks like you're playing on {}, with {}. Focus up, let's do this!".format(map, hero)
+#     start_program()
+#     tts.say(intro)
 
-    response = requests.post(url, json=data, headers=headers)
-    with open('output.mp3', 'wb') as f:
-        for chunk in response.iter_content(chunk_size=CHUNK_SIZE):
-            if chunk:
-                f.write(chunk)
-
-test = get_recording_from_text("I'm tenz ai chat")
+#     while(True):
+#         pressed = keyboard.read_key()
+#         if pressed == "n" or pressed == "N":
+#             record_speech()
+#         time.sleep(.3)
+    
+record_speech()
