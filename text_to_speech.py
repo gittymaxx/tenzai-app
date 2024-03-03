@@ -1,5 +1,8 @@
 import requests
 from playsound import playsound 
+
+
+recording_folder = './recordings/'
 TTS_API_KEY = "69fbd62afbc20a879804a57f8beccdcb"
 
 #Given: String with text we want to be said.
@@ -31,9 +34,8 @@ def get_recording_from_text(text, filename):
                 f.write(chunk)
 
 
-def say_prepped(filename):
-    #TODO PLAY FILENAME
-    return
+def say_recorded(filename):
+    playsound('{}.mp3'.format(filename))
 
 def prep(text, filename):
     get_recording_from_text(text, filename)
@@ -47,7 +49,7 @@ def say(text):
     #sends text and expects recording back
     get_recording_from_text(text)
 
-    playsound('output.wav')
+    say_recorded('output')
 
     #TODO PLAYS RECORDING BACK.
     return

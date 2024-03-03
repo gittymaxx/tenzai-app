@@ -11,13 +11,13 @@ hero = "Phoenix"
 FIRST_LINE = 'first_line'
 INTRO = 'intro'
 
-intro = "Hi, I'm Tenz AI. Here to help you win in Valorant. it looks like you're playing on {}, with {}. Focus up, let's do this!".format(map, hero)
+intro_line = "Hi, I'm Tenz AI. Here to help you win in Valorant. it looks like you're playing on {}, with {}. Focus up, let's do this!".format(map, hero)
 
 #things to do when we start the program. Waits for the user to press the 'n' or 'N' key.
 def start_program():
     response = ai.start_chat(map, hero)
     tts.prep(response, FIRST_LINE)
-    tts.prep(intro, INTRO)
+    tts.prep(intro_line, INTRO)
     print("press N to start the program.")
     while(True):
         pressed = keyboard.read_key()
@@ -28,9 +28,9 @@ def start_program():
 
 if __name__ == "__main__":
     start_program()
-    tts.say_prepped(INTRO)
+    tts.say_recorded(INTRO)
     time.wait(3)
-    tts.say_prepped('first_line')
+    tts.say_recorded(FIRST_LINE)
     while(True):
         pressed = keyboard.read_key()
         if pressed == "n" or pressed == "N":

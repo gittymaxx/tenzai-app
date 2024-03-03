@@ -1,6 +1,5 @@
-import PIL.Image
 import speech_to_text as STT
-import screenshot
+import text_to_speech as tts
 import google.generativeai as genai
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
 
@@ -12,7 +11,6 @@ CHAT_API_KEY = 'AIzaSyDhhT_uWRZOfqwyrIXZM_aKULa8IagRZu4'
 #Given: String with text and image that wants to be said to API
 #Returns: response string from API.
 def send_message_with_image(message):
-    img = PIL.Image.open('./screenshots/valorant.jpg')
     response = chat.send_message([message],
         safety_settings={
         HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
@@ -42,5 +40,5 @@ def ask():
     message = STT.record_to_text()
 
     #sends message to bot with screenshot and question.
-    send_message_with_image(message)
-    return
+    response = send_message_with_image(message)
+    tts.say(response)

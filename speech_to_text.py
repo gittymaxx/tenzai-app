@@ -14,15 +14,15 @@ def transform_speech():
 
     # API endpoint configuration
     api_url = "https://transcribe.whisperapi.com"
-    headers = {'Authorization': 'Bearer 6G2IDAFKJZFX675PZ983VFGNTDFSJM2L'}
+    headers = {'Authorization': 'Bearer {}'.format(API_KEY)}
 
     # Payload setup for API request
     payload = {
-        'file': {'file': open('{}output.wav'.format(recording_folder), 'rb')},
+        'file': {'file': open('{}my_question.wav'.format(recording_folder), 'rb')},
         'data': {
             "fileType": "wav",  # Default is 'wav'.
             "diarization": "false",  # 'True' may slow down processing.
-            "numSpeakers": "2",  # Optional: Number of speakers for diarization. If blank, model will auto-detect.
+            "numSpeakers": "1",  # Optional: Number of speakers for diarization. If blank, model will auto-detect.
             #"url": "URL_OF_STORED_AUDIO_FILE",  # Use either URL or file, not both.
             "initialPrompt": "",  # Optional: Teach model a phrase. May negatively impact results.
             "language": "en",  # Optional: Language of speech. If blank, model will auto-detect.
@@ -36,32 +36,23 @@ def transform_speech():
 
     # Make the API request and print the response
     response = requests.post(api_url, headers=headers, files=payload['file'], data=payload['data'])
-    print(response.text)
-
     # Note: Omitting a parameter or setting it as an empty string "" allows for auto-detection.
     # Keep in mind that auto-detected values may not always be accurate.
 
-
-    #Buy transcription time from this portal
-    #Generate an API key. You click the circular arrows above to generate a new key. We don't save the key, so keep it on you.
-    #Example API usage provided
-    #See API usage on this dashboard by day
-    #API usage rounded to nearest second per request, minimum 1 second per request
-    #Questions? Comments? Concerns? Email: info@whisperapi.com and we will respond
-    return ""
+    return response.text
 
 def record_speech():
     time.wait(1)
     fs = 44100  # Sample rate
     try: 
-        recording = sd.rec(None, samplerate=fs, channels=2)
+        recording = sd.rec(frames = 10 * fs, samplerate=fs, channels=2)
         while True:
             pressed = keyboard.read_key()
             if pressed == "n" or pressed == "N":
                 raise KeyboardInterrupt
             time.wait(.3)
     except KeyboardInterrupt:
-        write('{}output.wav'.format(recording_folder), fs, recording)  # Save as WAV file 
+        write('{}my_question.wav'.format(recording_folder), fs, recording)  # Save as WAV file 
 
 def record_to_text():
     record_speech()
