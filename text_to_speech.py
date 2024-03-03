@@ -1,5 +1,5 @@
 import requests
-
+from playsound import playsound 
 TTS_API_KEY = "69fbd62afbc20a879804a57f8beccdcb"
 
 #Given: String with text we want to be said.
@@ -37,6 +37,8 @@ def say(text):
 
     #sends text and expects recording back
     get_recording_from_text(text)
+
+    playsound('output.wav')
 
     #TODO PLAYS RECORDING BACK.
     return
