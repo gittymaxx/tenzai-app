@@ -39,7 +39,6 @@ def start_chat(map, hero):
 #record a message and take a screenshot to send to AI.
 def ask():
     #TODO
-    screenshot.screenshot('image')
     message = STT.record_to_text()
 
     #sends message to bot with screenshot and question.

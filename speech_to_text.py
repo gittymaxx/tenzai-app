@@ -17,6 +17,7 @@ def transform_speech():
 
 #records the speech and turns it into file output.wav
 def record_speech():
+    time.wait(1)
     fs = 44100  # Sample rate
     try: 
         recording = sd.rec(None, samplerate=fs, channels=2)
