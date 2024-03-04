@@ -6,7 +6,7 @@ import requests
 
 
 recording_folder = './recordings/'
-API_KEY = "6G2IDAFKJZFX675PZ983VFGNTDFSJM2L"
+API_KEY = "M1MQ9Y1W5ZJUTKDFAN59ZKURK4FZE4IZ"
 
 
 #calls API to transform output file to text
@@ -42,15 +42,17 @@ def transform_speech():
     return response.text
 
 def record_speech():
-    time.wait(1)
+    time.sleep(1)
     fs = 44100  # Sample rate
     try: 
         recording = sd.rec(frames = 10 * fs, samplerate=fs, channels=2)
+        print("Now recording")
         while True:
             pressed = keyboard.read_key()
             if pressed == "n" or pressed == "N":
+                print("Finished Recording")
                 raise KeyboardInterrupt
-            time.wait(.3)
+            time.sleep(.3)
     except KeyboardInterrupt:
         write('{}my_question.wav'.format(recording_folder), fs, recording)  # Save as WAV file 
 

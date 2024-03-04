@@ -47,7 +47,7 @@ def prep(text, filename):
 def say(text):
 
     #sends text and expects recording back
-    get_recording_from_text(text)
+    get_recording_from_text(text, 'output')
 
     say_recorded('output')
 
