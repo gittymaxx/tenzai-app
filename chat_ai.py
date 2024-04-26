@@ -6,7 +6,7 @@ from google.generativeai.types import HarmCategory, HarmBlockThreshold
 
 global chat
 
-CHAT_API_KEY = 'AIzaSyDhhT_uWRZOfqwyrIXZM_aKULa8IagRZu4'
+CHAT_API_KEY = ''
 
 #Given: String with text and image that wants to be said to API
 #Returns: response string from API.

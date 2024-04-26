@@ -6,7 +6,7 @@ import requests
 
 
 recording_folder = './recordings/'
-API_KEY = "M1MQ9Y1W5ZJUTKDFAN59ZKURK4FZE4IZ"
+API_KEY = ""
 
 
 #calls API to transform output file to text

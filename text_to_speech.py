@@ -3,7 +3,7 @@ from playsound import playsound
 
 
 recording_folder = './recordings/'
-TTS_API_KEY = "69fbd62afbc20a879804a57f8beccdcb"
+TTS_API_KEY = ""
 
 #Given: String with text we want to be said.
 #Returns: MP3 with playable Sound.
@@ -15,7 +15,7 @@ def get_recording_from_text(text, filename):
     headers = {
         "Accept": "audio/mpeg",
         "Content-Type": "application/json",
-        "xi-api-key": "69fbd62afbc20a879804a57f8beccdcb"
+        "xi-api-key": ""
     }
 
     data = {

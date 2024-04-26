@@ -3,7 +3,7 @@ import sounddevice as sd
 from scipy.io.wavfile import write
 
 recording_folder = './recordings/'
-API_KEY = "6G2IDAFKJZFX675PZ983VFGNTDFSJM2L"
+API_KEY = ""
 
 import keyboard
 import chat_ai as ai
